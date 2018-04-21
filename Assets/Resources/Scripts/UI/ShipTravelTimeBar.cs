@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class ShipTravelTimeBar : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public float travelTime = 0f;
+
+    public SpriteRenderer shipSymbol;
+    public SpriteRenderer travelLine;
+
+	
+	void Awake ()
+    {
 		
 	}
+
+    public void Start()
+    {
+
+
+    }
+
 	
-	// Update is called once per frame
+	
 	void Update () {
 		
 	}
