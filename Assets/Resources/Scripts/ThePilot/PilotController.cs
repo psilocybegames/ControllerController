@@ -15,7 +15,11 @@ public class PilotController : MonoBehaviour {
     public SpriteRenderer sr;
     public Rigidbody2D r;
     public Animator a;
-	void Start () {
+
+    private bool IsOnLadder;
+    private float storedGravity;
+
+    void Start () {
 
         r = GetComponent<Rigidbody2D>();
 		
@@ -37,20 +41,37 @@ public class PilotController : MonoBehaviour {
         	
 	}
 
+    public void SetIsOnLadder(bool value)
+    {
+        if(value)
+        {
+            storedGravity = r.gravityScale;
+            r.gravityScale = 0f;
+        }
+        else
+        {
+            r.gravityScale = storedGravity;
+        }
+        IsOnLadder = value;
+    }
+
     public void checkPlayerInput()
     {
 
         // Add difference with controlledBy flags
-         horDir = Input.GetAxis("Horizontal");
-         verDir = Input.GetAxis("Vertical");
+        horDir = Input.GetAxis("Horizontal");
+        verDir = 0f;
 
-
+        if(IsOnLadder)
+        {
+            verDir = Input.GetAxis("Vertical");
+        }
 
     }
 
     public void FixedUpdate()
     {
-        r.velocity = new Vector3(moveSpeed * horDir,0f,0f);
+        r.velocity = new Vector3(moveSpeed * horDir,moveSpeed * verDir,0f);
 
 
     }
