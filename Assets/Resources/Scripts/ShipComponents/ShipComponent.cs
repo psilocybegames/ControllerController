@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipComponent : MonoBehaviour {
+public class ShipComponent : InteractableObject {
 
 	// Use this for initialization
 	void Start () {
