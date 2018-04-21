@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour {
 
+    private PilotController pilot;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        pilot = FindObjectOfType<PilotController>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void OnTriggerEnter2d (Collider2D other)
+    {
+		if(other == pilot)
+        {
+            pilot.IsOnLadder = true;
+        }
 	}
+
+    void OnTriggerExit2d(Collider2D other)
+    {
+        if (other == pilot)
+        {
+            pilot.IsOnLadder = false;
+        }
+    }
 }
