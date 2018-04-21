@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 03ac746772c331e408a7ec1ebc708416
-timeCreated: 1524312133
+guid: 8497622f688dca9489f331e17cfb9a74
+timeCreated: 1524313664
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,12 +98,12 @@ TextureImporter:
       name: stars_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 3
-        height: 5
+        x: 0
+        y: 0
+        width: 38
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -112,12 +112,12 @@ TextureImporter:
       name: stars_1
       rect:
         serializedVersion: 2
-        x: 13
-        y: 4
-        width: 3
-        height: 3
+        x: 38
+        y: 0
+        width: 38
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,12 +126,12 @@ TextureImporter:
       name: stars_2
       rect:
         serializedVersion: 2
-        x: 20
+        x: 76
         y: 0
-        width: 9
-        height: 11
+        width: 38
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: stars_3
       rect:
         serializedVersion: 2
-        x: 30
+        x: 114
         y: 0
-        width: 9
-        height: 11
+        width: 38
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: stars_4
       rect:
         serializedVersion: 2
-        x: 40
+        x: 152
         y: 0
-        width: 10
-        height: 11
+        width: 38
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
