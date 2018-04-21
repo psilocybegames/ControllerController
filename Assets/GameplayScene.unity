@@ -218,11 +218,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.z
@@ -247,6 +247,10 @@ Prefab:
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164230193078156, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
+      propertyPath: m_Name
+      value: EngineRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
@@ -292,7 +296,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1164230193078156, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_Name
-      value: SpaceShipRoom2
+      value: ShieldRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
@@ -327,7 +331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 546410140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.24, y: 8.78, z: 0}
+  m_LocalPosition: {x: -5.24, y: 4.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 173066541}
@@ -582,7 +586,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.z
@@ -610,7 +614,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1164230193078156, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_Name
-      value: SpaceShipRoom1
+      value: ControlRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
@@ -706,6 +710,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1243096718}
+  - component: {fileID: 1243096719}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -730,6 +735,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1243096719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243096717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b294cbc6aa043804e9955d1f6402af9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1277125153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1101,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1716997754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2084614708}
@@ -1205,7 +1221,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1867676332
+  randomSeed: 540773101
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1357,7 +1373,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1656,7 +1672,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 20, y: 20, z: 1}
+    m_Scale: {x: 133.72037, y: 113.9727, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4515,7 +4531,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4028000416638464, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4547,7 +4563,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1164230193078156, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
       propertyPath: m_Name
-      value: SpaceShipRoom3
+      value: WeaponsRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e9a2338b7fb7fa409d340d5497a45af, type: 2}
