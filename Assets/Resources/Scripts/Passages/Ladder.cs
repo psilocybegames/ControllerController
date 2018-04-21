@@ -17,7 +17,7 @@ public class Ladder : MonoBehaviour {
     {
 		if(other == pilot)
         {
-            pilot.IsOnLadder = true;
+            pilot.SetIsOnLadder(true);
         }
 	}
 
@@ -25,7 +25,7 @@ public class Ladder : MonoBehaviour {
     {
         if (other == pilot)
         {
-            pilot.IsOnLadder = false;
+            pilot.SetIsOnLadder(false);
         }
     }
 }
