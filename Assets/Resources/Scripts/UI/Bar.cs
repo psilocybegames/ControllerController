@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipHealthBar : MonoBehaviour {
+public class Bar : MonoBehaviour {
 
     SpriteMask sm;
     SpriteRenderer filler;
@@ -30,10 +30,10 @@ public class ShipHealthBar : MonoBehaviour {
 
     public void setSpriteMaskSizeAndPosition()
     {
-        float width = filler.sprite.bounds.size.x;
+        float height = filler.sprite.bounds.size.y;
 
-        sm.transform.localScale = new Vector3(1f - percentFilled, 1f, 1f);
-        float offset = (width * percentFilled)/2f;
-        sm.transform.localPosition = new Vector3(offset, sm.transform.localPosition.y, sm.transform.localPosition.z);
+        sm.transform.localScale = new Vector3(sm.transform.localScale.x, 1f - percentFilled, sm.transform.localScale.z);
+        float offset = (height * percentFilled)/2f;
+        sm.transform.localPosition = new Vector3(sm.transform.localPosition.x, offset, sm.transform.localPosition.z);
     }
 }

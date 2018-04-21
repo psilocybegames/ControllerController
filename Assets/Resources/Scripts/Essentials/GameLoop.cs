@@ -6,7 +6,14 @@ public class GameLoop : MonoBehaviour {
 
 
     public static PilotController p;
-	
+    public static float shipHealth = 10f;
+    public static float maxShipHealth = 10f;
+    public static float travelTime = Config.travelTime;
+    public static float possesionMeter = 0f;
+    public static float maxPossesion = 10f;
+
+    public Bar healthBar;
+    public Bar possesionBar;
 
     void Start()
     {
@@ -16,10 +23,17 @@ public class GameLoop : MonoBehaviour {
     }
 	void Awake ()
     {
-        p = GameObject.Find("ThePilot").GetComponent<PilotController>();	
-	}
+        p = GameObject.Find("ThePilot").GetComponent<PilotController>();
+        healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
+        possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
+
+    }
+    
 	
-	void Update () {
+	void Update ()
+    {
+        healthBar.percentFilled = shipHealth / maxShipHealth;
+        possesionBar.percentFilled = possesionMeter / maxPossesion;
 		
 	}
 }
