@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UsableItem : InteractableObject {
-
+public abstract class UsableItem : InteractableObject
+{
+    public abstract bool UseItemOn(ShipComponent component);
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 }
