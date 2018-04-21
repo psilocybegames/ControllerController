@@ -12,14 +12,20 @@ public class PilotController : MonoBehaviour {
     public float verDir = 0f;
     public float moveSpeed = 2f;
 
+
+    public float removeKeyCounter = 0f;
+    public float removeKeyTime = Config.keyRemovalTime;
+
     public SpriteRenderer sr;
     public Rigidbody2D r;
     public Animator a;
 
     private bool IsOnLadder;
     private float storedGravity;
-
+    public List<KeyCode> pressedKeys;
     void Start () {
+
+        pressedKeys = new List<KeyCode>();
 
         r = GetComponent<Rigidbody2D>();
 		
@@ -37,9 +43,26 @@ public class PilotController : MonoBehaviour {
     {
 
         checkPlayerInput();
-        
+        removeKeysFromLoggedInput();
         	
 	}
+
+    public void removeKeysFromLoggedInput()
+    {
+        if (removeKeyCounter > removeKeyTime)
+        {
+            removeKeyCounter = 0f;
+
+            if (pressedKeys.Count > 0)
+                pressedKeys.RemoveAt(0);
+
+        }
+        else
+            removeKeyCounter += Time.deltaTime;
+
+
+
+    }
 
     public void SetIsOnLadder(bool value)
     {
@@ -59,12 +82,34 @@ public class PilotController : MonoBehaviour {
     {
 
         // Add difference with controlledBy flags
-        horDir = Input.GetAxis("Horizontal");
+        string axisNumber = "1";
+
+        logKeyInput();
+
+        if (controlledByPilot)
+            axisNumber = "1";
+        else
+            axisNumber = "2";
+
+        horDir = Input.GetAxis("Horizontal" + axisNumber);
         verDir = 0f;
 
         if(IsOnLadder)
         {
-            verDir = Input.GetAxis("Vertical");
+            verDir = Input.GetAxis("Vertical" + axisNumber);
+        }
+
+        
+
+    }
+
+    public void logKeyInput()
+    {
+        
+        foreach(KeyCode c in Config.buttons)
+        {
+            if (Input.GetKey(c))
+                pressedKeys.Add(c);
         }
 
     }

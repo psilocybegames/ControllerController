@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,13 @@ public class GameLoop : MonoBehaviour {
     public Bar healthBar;
     public Bar possesionBar;
 
+    public void switchControls()
+    {
+
+
+
+    }
+
     void Start()
     {
 
@@ -26,6 +34,7 @@ public class GameLoop : MonoBehaviour {
         p = GameObject.Find("ThePilot").GetComponent<PilotController>();
         healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
         possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
+        Config.initControlScheme();
 
     }
     
@@ -34,6 +43,27 @@ public class GameLoop : MonoBehaviour {
     {
         healthBar.percentFilled = shipHealth / maxShipHealth;
         possesionBar.percentFilled = possesionMeter / maxPossesion;
+        possesionMeter += Config.constantPossesionChange;
+
+        if(possesionMeter > maxPossesion)
+        {
+            switchPossesion();
+
+
+        }
 		
 	}
+
+    public void switchPossesion()
+    {
+        
+    }
+
+    public static void changePossesionBar(float d)
+    {
+        possesionMeter += d * Config.movementPossesionChange;
+        
+
+
+    }
 }
