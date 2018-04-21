@@ -10,6 +10,7 @@ public class PilotController : MonoBehaviour {
 
     public float horDir = 0f;
     public float verDir = 0f;
+    public float moveSpeed = 2f;
 
     public SpriteRenderer sr;
     public Rigidbody2D r;
@@ -42,7 +43,7 @@ public class PilotController : MonoBehaviour {
 
     public void FixedUpdate()
     {
-        r.velocity = new Vector3(horDir,0f,0f);
+        r.velocity = new Vector3(moveSpeed * horDir,0f,0f);
 
 
     }
