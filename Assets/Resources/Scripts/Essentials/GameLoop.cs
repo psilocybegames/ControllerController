@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+
+    public static PilotController p;
+	
+
+    void Start()
+    {
+
+
+
+    }
+	void Awake ()
+    {
+        p = GameObject.Find("ThePilot").GetComponent<PilotController>();	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

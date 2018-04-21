@@ -21,6 +21,13 @@ public class PilotController : MonoBehaviour {
 		
 	}
 	
+    public int checkForClick()
+    {
+
+        return 0;
+
+    }
+
 	
 	void Update ()
     {
