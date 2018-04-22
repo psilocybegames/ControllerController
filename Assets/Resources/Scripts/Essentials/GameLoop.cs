@@ -15,6 +15,10 @@ public class GameLoop : MonoBehaviour {
 
     public Bar healthBar;
     public Bar possesionBar;
+    public Event currentEvent;
+
+    public static SpaceShip ship;
+    public List<Event> events;
 
     public void switchControls()
     {
@@ -31,15 +35,80 @@ public class GameLoop : MonoBehaviour {
     }
 	void Awake ()
     {
-        p = GameObject.Find("ThePilot").GetComponent<PilotController>();
-        healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
-        possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
         Config.initControlScheme();
 
+        p = GameObject.Find("ThePilot").GetComponent<PilotController>();
+        healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
+        ship = GameObject.Find("Spaceship").GetComponent<SpaceShip>();
+        possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
+
+
+        placeItemsRandomly();
+        generateEventList();
     }
-    
-	
-	void Update ()
+
+    public void generateEventList()
+    {
+        events = new List<Event>();
+
+        
+        int numOfEvents = UnityEngine.Random.Range(Config.minEvents, Config.maxEvents);
+
+        int lastEvent = -1;
+        
+        
+        for(int i = 0;i<=numOfEvents;i++)
+        {
+            int r = UnityEngine.Random.Range(0, 4);
+            while (r == lastEvent)
+                r = UnityEngine.Random.Range(0, 4);
+
+            lastEvent = r;
+
+            switch(r)
+            {
+                case 0:
+                    events.Add(new AsteroidEvent());
+                    break;
+                case 1:
+                    events.Add(new SunEvent());
+                    break;
+                case 2:
+                    events.Add(new PirateEvent());
+                    break;
+                case 3:
+                    events.Add(new MinesEvent());
+                    break;
+
+
+            }
+
+
+
+        }
+
+
+        float sTime = 0f;
+        foreach(Event e in events)
+        {
+            e.initEvent(sTime);
+            sTime = e.endTime + UnityEngine.Random.Range(Config.minNoEventsTime, Config.maxNoEventsTime);
+        }
+
+
+
+
+
+
+
+    }
+
+    public void placeItemsRandomly()
+    {
+        
+    }
+
+    void Update ()
     {
         healthBar.percentFilled = shipHealth / maxShipHealth;
         possesionBar.percentFilled = possesionMeter / maxPossesion;

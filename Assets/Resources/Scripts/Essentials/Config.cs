@@ -20,6 +20,10 @@ public static class Config
     public static float keyRemovalTime = 0.2f;
     public static float constantPossesionChange = 0.0005f;
     public static float movementPossesionChange = 0.01f;
+    public static int minEvents = 4;
+    public static int maxEvents = 7;
+    public static float minNoEventsTime = 10f;
+    public static float maxNoEventsTime = 25f;
 
     public static void switchControlScheme(int scheme)
     {

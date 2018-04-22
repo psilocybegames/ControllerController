@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+
+    public bool shieldOvercharged = false;
+    public bool enginesTuned = false;
+    public bool helmEngaged = false;
+    public bool laserTurretFiring = false;
+
+	
+	void Start ()
+
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	
+	void Update ()
+    {
 		
 	}
 }
