@@ -8,11 +8,13 @@ public class GameLoop : MonoBehaviour {
 
     public static PilotController p;
     public static float shipHealth = 10f;
+
+    
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
     public static float currentTravelTime = 0f;
 
-   
+    public static GameLoop gl;
     public static float timeElapsed = 0f;
     public static float possesionMeter = 0f;
     public static float maxPossesion = 10f;
@@ -21,7 +23,7 @@ public class GameLoop : MonoBehaviour {
     public Bar possesionBar;
     public Event currentEvent;
 
-
+    public static DamageOverlay dmgOverlay;
     public static List<Sprite> asteroidSprites;
     public static List<Sprite> mineSprites;
     public static List<Sprite> pirateShipSprites;
@@ -40,10 +42,19 @@ public class GameLoop : MonoBehaviour {
 
     void Start()
     {
-
+        
 
 
     }
+
+    public static void damageShipByASun()
+    {
+        if(!ship.shieldOvercharged)
+        {
+            damageShip(Config.sunDamage);
+        }
+    }
+
 
 
     public static void damageShipByAMine()
@@ -74,19 +85,35 @@ public class GameLoop : MonoBehaviour {
 
     public static void playDamagedAnimation()
     {
-        
+        gl.fadeInRedOverlay();
+    }
+
+
+    public void fadeInRedOverlay()
+    {
+
+        dmgOverlay.engage = true;
+        gl.StartCoroutine(shakeTheCamera());
+
+    }
+
+    public IEnumerator shakeTheCamera()
+    {
+        Camera.main.GetComponent<ShakeCameraOnDamage>().enabled = true;
+        yield return new WaitForSeconds(Config.shakeCameraOnDamageTime);
+        Camera.main.GetComponent<ShakeCameraOnDamage>().enabled = false;
     }
 
     void Awake ()
     {
         Config.initControlScheme();
-
+        gl = this;
         p = GameObject.Find("ThePilot").GetComponent<PilotController>();
         healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
         ship = GameObject.Find("Spaceship").GetComponent<SpaceShip>();
         possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
         loadSprites();
-
+        dmgOverlay = GameObject.Find("DamageOverlay").GetComponent<DamageOverlay>();
         placeItemsRandomly();
         generateEventList();
     }
@@ -127,7 +154,7 @@ public class GameLoop : MonoBehaviour {
                     events.Add(new SunEvent());
                     break;
                 case 2:
-                    events.Add(new PirateEvent());
+                    events.Add(new AsteroidEvent());
                     break;
                 case 3:
                     events.Add(new MinesEvent());
@@ -141,7 +168,7 @@ public class GameLoop : MonoBehaviour {
         }
 
 
-        float sTime = 30f;
+        float sTime = 5f;
         foreach(Event e in events)
         {
             e.initEvent(sTime);
@@ -178,7 +205,7 @@ public class GameLoop : MonoBehaviour {
         currentTravelTime += Time.deltaTime * shipSpeed;
         timeElapsed += Time.deltaTime;
 
-
+        
 
         if(shipHealth <= 0f)
             humanWins();
