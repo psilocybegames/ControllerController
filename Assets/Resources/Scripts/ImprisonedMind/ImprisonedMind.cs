@@ -48,7 +48,6 @@ public class ImprisonedMind : MonoBehaviour {
         { 
             if(horDir != 0 || verDir != 0)
             {
-                Debug.Log("aa");
             Vector2 d = (new Vector2(horDir, verDir) - new Vector2(GameLoop.p.horDir, GameLoop.p.verDir)).normalized;
             GameLoop.changePossesionBar(d.magnitude - 0.5f);
             }
