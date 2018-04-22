@@ -12,7 +12,6 @@ public class PilotController : MonoBehaviour {
     public float verDir = 0f;
     public float moveSpeed = 2f;
 
-
     public float removeKeyCounter = 0f;
     public float removeKeyTime = Config.keyRemovalTime;
 
@@ -40,9 +39,10 @@ public class PilotController : MonoBehaviour {
 	
     public int checkForClick()
     {
-
-        return 0;
-
+        if (pressedKeys.Contains(Config.player1useOrPickupKeys[(int)Config.controlScheme]))
+            return 1;
+        else
+            return 0;
     }
 
 	
@@ -106,8 +106,8 @@ public class PilotController : MonoBehaviour {
             verDir = Input.GetAxis("Vertical" + axisNumber);
         }
 
-        
-
+        if (pressedKeys.Contains(Config.player1dropKeys[(int)Config.controlScheme]))
+            dropHeldItem();
     }
 
     public void logKeyInput()
@@ -115,10 +115,9 @@ public class PilotController : MonoBehaviour {
         
         foreach(KeyCode c in Config.buttons)
         {
-            if (Input.GetKey(c))
+            if (Input.GetKey(c) && !pressedKeys.Contains(c))
                 pressedKeys.Add(c);
         }
-
     }
 
     public void FixedUpdate()
@@ -130,7 +129,11 @@ public class PilotController : MonoBehaviour {
 
     public void dropHeldItem()
     {
-        heldItem.gameObject.transform.position = gameObject.transform.position;
+        if(heldItem != null)
+        {
+            heldItem.gameObject.transform.position = gameObject.transform.position;
+            heldItem = null;
+        }
     }
 
     public void pickUpItem(UsableItem pickedItem)
