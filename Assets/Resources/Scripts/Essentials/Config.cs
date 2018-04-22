@@ -29,7 +29,6 @@ public static class Config
     public static float minNoEventsTime = 10f;
     public static float maxNoEventsTime = 25f;
 
-    public static void switchControlScheme(ControlScheme newScheme)
     public static float AsteroidDamageTime = 3f;
     public static float AsteroidDamage = 0.2f;
     public static float MinesDamageTime = 3f;
@@ -43,7 +42,7 @@ public static class Config
     public static float sunDamage = 0.05f;
     public static float sunDamageTime = 1f;
 
-    public static void switchControlScheme(int scheme)
+    public static void switchControlScheme(ControlScheme newScheme)
     {
         List<KeyCode> currentControls = new List<KeyCode>();
         controlScheme = newScheme;
