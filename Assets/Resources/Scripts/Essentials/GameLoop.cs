@@ -11,6 +11,8 @@ public class GameLoop : MonoBehaviour {
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
     public static float currentTravelTime = 0f;
+
+   
     public static float timeElapsed = 0f;
     public static float possesionMeter = 0f;
     public static float maxPossesion = 10f;
@@ -42,7 +44,40 @@ public class GameLoop : MonoBehaviour {
 
 
     }
-	void Awake ()
+
+
+    public static void damageShipByAMine()
+    {
+        if (!ship.helmEngaged)
+        {
+            damageShip(Config.AsteroidDamage);
+        }
+    }
+
+    public static void damageShipByAsteroid()
+    {
+
+        if(!ship.shieldOvercharged)
+        {
+            damageShip(Config.AsteroidDamage);
+        }
+
+    }
+
+    public static void damageShip(float d)
+    {
+
+        shipHealth -= d;
+        playDamagedAnimation();
+
+    }
+
+    public static void playDamagedAnimation()
+    {
+        
+    }
+
+    void Awake ()
     {
         Config.initControlScheme();
 
@@ -106,7 +141,7 @@ public class GameLoop : MonoBehaviour {
         }
 
 
-        float sTime = 0f;
+        float sTime = 30f;
         foreach(Event e in events)
         {
             e.initEvent(sTime);
@@ -168,7 +203,6 @@ public class GameLoop : MonoBehaviour {
         currentEvent = getCurrentEvent();
         if(currentEvent != null)
         {
-            Debug.Log(currentEvent.GetType().ToString());
             currentEvent.processEvent();
         }
 

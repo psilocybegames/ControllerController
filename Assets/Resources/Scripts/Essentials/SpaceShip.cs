@@ -9,7 +9,7 @@ public class SpaceShip : MonoBehaviour {
     public bool enginesTuned = false;
     public bool helmEngaged = false;
     public bool laserTurretFiring = false;
-
+    public bool spaceShipFlying = true;
 	
 	void Start ()
 

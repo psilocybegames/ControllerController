@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Config
 {
     public static float CursorSpeed = 0.1f;
-    public static float travelTime = 400;
+    public static float travelTime = 10;
 
     public enum ControlScheme
     {
@@ -16,7 +16,6 @@ public static class Config
     }
 
     public static ControlScheme controlScheme = 0;
-
     public static List<KeyCode> buttons;
     public static List<KeyCode> player1useOrPickupKeys;
     public static List<KeyCode> player1dropKeys;
@@ -31,6 +30,17 @@ public static class Config
     public static float maxNoEventsTime = 25f;
 
     public static void switchControlScheme(ControlScheme newScheme)
+    public static float AsteroidDamageTime = 3f;
+    public static float AsteroidDamage = 0.2f;
+    public static float MinesDamageTime = 3f;
+    public static float MinesDamage = 3f;
+
+    public static float PirateDamageTime = 3f;
+    public static float PirateDamage = 3f;
+
+
+
+    public static void switchControlScheme(int scheme)
     {
         List<KeyCode> currentControls = new List<KeyCode>();
         controlScheme = newScheme;
