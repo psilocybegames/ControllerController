@@ -21,6 +21,17 @@ public static class Config
     public static List<KeyCode> player1dropKeys;
     public static List<KeyCode> player2useOrPickupKeys;
     public static List<KeyCode> player2dropKeys;
+
+    public static KeyCode player1UpKey = KeyCode.W;
+    public static KeyCode player1DownKey = KeyCode.S;
+    public static KeyCode player1LeftKey = KeyCode.A;
+    public static KeyCode player1RightKey = KeyCode.D;
+
+    public static KeyCode player2UpKey = KeyCode.UpArrow;
+    public static KeyCode player2DownKey = KeyCode.DownArrow;
+    public static KeyCode player2LeftKey = KeyCode.LeftArrow;
+    public static KeyCode player2RightKey = KeyCode.RightArrow;
+
     public static float keyRemovalTime = 0.2f;
     public static float constantPossesionChange = 0.0005f;
     public static float movementPossesionChange = 0.01f;
@@ -29,7 +40,6 @@ public static class Config
     public static float minNoEventsTime = 10f;
     public static float maxNoEventsTime = 25f;
 
-    public static void switchControlScheme(ControlScheme newScheme)
     public static float AsteroidDamageTime = 3f;
     public static float AsteroidDamage = 0.2f;
     public static float MinesDamageTime = 3f;
@@ -40,7 +50,7 @@ public static class Config
 
 
 
-    public static void switchControlScheme(int scheme)
+    public static void switchControlScheme(ControlScheme newScheme)
     {
         List<KeyCode> currentControls = new List<KeyCode>();
         controlScheme = newScheme;

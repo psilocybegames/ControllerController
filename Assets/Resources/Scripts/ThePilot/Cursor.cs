@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
+    private PilotController pilot;
+
+    public float maximumDistance = 5;
+
     public void OnTriggerStay2D(Collider2D c)
     {
         if(c.GetComponent<InteractableObject>() != null)
@@ -40,7 +44,7 @@ public class Cursor : MonoBehaviour
 
     void Start()
     {
-
+        pilot = FindObjectOfType<PilotController>();
     }
 
 
@@ -54,9 +58,10 @@ public class Cursor : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 newPosition = transform.position + new Vector3(horDir, verDir, 0f) * Config.CursorSpeed;
 
-        transform.position += new Vector3(horDir, verDir, 0f) * Config.CursorSpeed;
-
+        if(Vector3.Distance(newPosition, pilot.gameObject.transform.position) <= maximumDistance)
+            transform.position += new Vector3(horDir, verDir, 0f) * Config.CursorSpeed;
 
     }
 }

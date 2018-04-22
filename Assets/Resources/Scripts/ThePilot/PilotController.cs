@@ -11,6 +11,7 @@ public class PilotController : MonoBehaviour {
     public float horDir = 0f;
     public float verDir = 0f;
     public float moveSpeed = 2f;
+    public float keyboardAxisBaseValue = 1f;
 
     public float removeKeyCounter = 0f;
     public float removeKeyTime = Config.keyRemovalTime;
@@ -93,17 +94,53 @@ public class PilotController : MonoBehaviour {
 
         logKeyInput();
 
-        if (controlledByPilot)
-            axisNumber = "1";
-        else
-            axisNumber = "2";
-
-        horDir = Input.GetAxis("Horizontal" + axisNumber);
-        verDir = 0f;
-
-        if(IsOnLadder)
+        if(Config.controlScheme == Config.ControlScheme.KeybordAndMouse)
         {
-            verDir = Input.GetAxis("Vertical" + axisNumber);
+            KeyCode currentPlayerLeft;
+            KeyCode currentPlayerRight;
+            KeyCode currentPlayerUp;
+            KeyCode currentPlayerDown;
+
+            if (controlledByPilot)
+            {
+                currentPlayerLeft = Config.player1LeftKey;
+                currentPlayerRight = Config.player1RightKey;
+                currentPlayerUp = Config.player1UpKey;
+                currentPlayerDown = Config.player1DownKey;
+            }
+            else
+            {
+                currentPlayerLeft = Config.player2LeftKey;
+                currentPlayerRight = Config.player2RightKey;
+                currentPlayerUp = Config.player2UpKey;
+                currentPlayerDown = Config.player2DownKey;
+            }
+
+            if (pressedKeys.Contains(currentPlayerLeft) && !pressedKeys.Contains(currentPlayerRight))
+                horDir = keyboardAxisBaseValue * -1;
+            if (pressedKeys.Contains(currentPlayerRight) && !pressedKeys.Contains(currentPlayerLeft))
+                horDir = keyboardAxisBaseValue;
+
+            if (pressedKeys.Contains(currentPlayerDown) && !pressedKeys.Contains(currentPlayerUp))
+                verDir = keyboardAxisBaseValue * -1;
+            if (pressedKeys.Contains(currentPlayerUp) && !pressedKeys.Contains(currentPlayerDown))
+                verDir = keyboardAxisBaseValue;
+        }
+        else
+        {
+            if (controlledByPilot)
+                axisNumber = "1";
+            else
+                axisNumber = "2";
+
+            horDir = Input.GetAxis("Horizontal" + axisNumber);
+            verDir = Input.GetAxis("Vertical" + axisNumber); ;
+            
+        }
+
+        if (!IsOnLadder)
+        {
+            verDir = 0f;
         }
 
         if (pressedKeys.Contains(Config.player1dropKeys[(int)Config.controlScheme]))
