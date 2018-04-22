@@ -14,7 +14,7 @@ public class EventObjects : MonoBehaviour {
         asteroids = transform.Find("AsteroidField").GetComponent<ParticleSystem>();
         mines = transform.Find("MineField").GetComponent<ParticleSystem>();
         pirates = transform.Find("PirateShipFleet").GetComponent<ParticleSystem>();
-
+        stopAllParticleSystems();
 
     }
 

@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 30738688910666640ab04f9d5866a828
-timeCreated: 1524409799
+guid: ccc898f8cd6d8974e96c3c49397f0018
+timeCreated: 1524416408
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Asteroids_0
-    21300002: Asteroids_1
-    21300004: Asteroids_2
-    21300006: Asteroids_3
-    21300008: Asteroids_4
-    21300010: Asteroids_5
+    21300000: asteroids_0
+    21300002: asteroids_1
+    21300004: asteroids_2
+    21300006: asteroids_3
+    21300008: asteroids_4
+    21300010: asteroids_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -96,13 +96,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Asteroids_0
+      name: asteroids_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 176
-        height: 160
+        width: 165
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,13 +110,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Asteroids_1
+      name: asteroids_1
       rect:
         serializedVersion: 2
-        x: 172
+        x: 165
         y: 0
-        width: 78
-        height: 160
+        width: 165
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,27 +124,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Asteroids_2
+      name: asteroids_2
       rect:
         serializedVersion: 2
-        x: 250
-        y: 2
-        width: 68
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Asteroids_3
-      rect:
-        serializedVersion: 2
-        x: 321
+        x: 330
         y: 0
-        width: 99
-        height: 160
+        width: 165
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,13 +138,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Asteroids_4
+      name: asteroids_3
       rect:
         serializedVersion: 2
-        x: 420
+        x: 495
         y: 0
-        width: 160
-        height: 160
+        width: 165
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,13 +152,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Asteroids_5
+      name: asteroids_4
       rect:
         serializedVersion: 2
-        x: 584
+        x: 660
         y: 0
-        width: 83
-        height: 160
+        width: 165
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: asteroids_5
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 0
+        width: 165
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

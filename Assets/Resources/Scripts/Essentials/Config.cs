@@ -25,6 +25,9 @@ public static class Config
     public static float minNoEventsTime = 10f;
     public static float maxNoEventsTime = 25f;
 
+    public static float AsteroidDamageTime = 3f;
+    public static float AsteroidDamage = 0.2f;
+
     public static void switchControlScheme(int scheme)
     {
 
