@@ -10,12 +10,21 @@ public class GameLoop : MonoBehaviour {
     public static float shipHealth = 10f;
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
+    public static float currentTravelTime = 0f;
+    public static float timeElapsed = 0f;
     public static float possesionMeter = 0f;
     public static float maxPossesion = 10f;
-
+    public static float shipSpeed = 1f;
     public Bar healthBar;
     public Bar possesionBar;
     public Event currentEvent;
+
+
+    public static List<Sprite> asteroidSprites;
+    public static List<Sprite> mineSprites;
+    public static List<Sprite> pirateShipSprites;
+
+
 
     public static SpaceShip ship;
     public List<Event> events;
@@ -41,10 +50,19 @@ public class GameLoop : MonoBehaviour {
         healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
         ship = GameObject.Find("Spaceship").GetComponent<SpaceShip>();
         possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
-
+        loadSprites();
 
         placeItemsRandomly();
         generateEventList();
+    }
+
+    public void loadSprites()
+    {
+
+        asteroidSprites = new List<Sprite>(Resources.LoadAll<Sprite>("Resources/Sprites/Events/Asteroids"));
+        mineSprites = new List<Sprite>(Resources.LoadAll<Sprite>("Resources/Sprites/Events/Mines"));
+        pirateShipSprites = new List<Sprite>(Resources.LoadAll<Sprite>("Resources/Sprites/Events/PirateShips"));
+
     }
 
     public void generateEventList()
@@ -120,8 +138,51 @@ public class GameLoop : MonoBehaviour {
 
 
         }
-		
+        processEvents();
+
+        currentTravelTime += Time.deltaTime * shipSpeed;
+        timeElapsed += Time.deltaTime;
+
+        if(shipHealth <= 0f)
+            humanWins();
+
+        if (currentTravelTime >= travelTime)
+            alienWins();
+        
 	}
+
+    public void alienWins()
+    {
+        
+    }
+
+    public void humanWins()
+    {
+
+    }
+
+    public void processEvents()
+    {
+        currentEvent = getCurrentEvent();
+        if(currentEvent != null)
+            currentEvent.processEvent();
+
+    }
+
+    public Event getCurrentEvent()
+    {
+        Event retEvent = null;
+        foreach(Event e in events)
+        {
+            if(timeElapsed > e.startTime && timeElapsed < e.endTime)
+            {
+                retEvent = e;
+                break;
+            }
+        }
+
+        return retEvent;
+    }
 
     public void switchPossesion()
     {

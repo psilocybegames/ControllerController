@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class AsteroidEvent : Event {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void processEvent()
+    {
+        base.processEvent();
+
+
+    }
+
+    public override void onEndEvent()
+    {
+        base.onEndEvent();
+    }
+
+    public override void onFireEvent()
+    {
+        base.onFireEvent();
+    }
 }
