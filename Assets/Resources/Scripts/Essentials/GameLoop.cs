@@ -143,6 +143,8 @@ public class GameLoop : MonoBehaviour {
         currentTravelTime += Time.deltaTime * shipSpeed;
         timeElapsed += Time.deltaTime;
 
+
+
         if(shipHealth <= 0f)
             humanWins();
 
@@ -165,7 +167,10 @@ public class GameLoop : MonoBehaviour {
     {
         currentEvent = getCurrentEvent();
         if(currentEvent != null)
+        {
+            Debug.Log(currentEvent.GetType().ToString());
             currentEvent.processEvent();
+        }
 
     }
 
