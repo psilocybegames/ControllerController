@@ -23,13 +23,20 @@ public class PilotController : MonoBehaviour {
     private bool IsOnLadder;
     private float storedGravity;
     public List<KeyCode> pressedKeys;
+
+    public UsableItem heldItem;
+    private HeldItemBox heldItemBox;
+
     void Start () {
 
         pressedKeys = new List<KeyCode>();
 
         r = GetComponent<Rigidbody2D>();
-		
-	}
+
+        heldItem = null;
+        heldItemBox = FindObjectOfType<HeldItemBox>();
+
+    }
 	
     public int checkForClick()
     {
@@ -119,5 +126,20 @@ public class PilotController : MonoBehaviour {
         r.velocity = new Vector3(moveSpeed * horDir,moveSpeed * verDir,0f);
 
 
+    }
+
+    public void dropHeldItem()
+    {
+        heldItem.gameObject.transform.position = gameObject.transform.position;
+    }
+
+    public void pickUpItem(UsableItem pickedItem)
+    {
+        if(heldItem != null)
+        {
+            dropHeldItem();
+        }
+        heldItem = pickedItem;
+        pickedItem.gameObject.transform.position = heldItemBox.getItemMovePosition();
     }
 }

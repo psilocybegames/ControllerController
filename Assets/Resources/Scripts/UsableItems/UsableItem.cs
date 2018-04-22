@@ -2,18 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UsableItem : InteractableObject
+public class UsableItem : InteractableObject
 {
-    public abstract bool UseItemOn(ShipComponent component);
+    private PilotController pilot;
+    public bool isPickable;
+
+    public enum ItemType
+    {
+        ControlRod,
+        PilotClearance,
+        InhibitorReleaseKey,
+        EngineerHud
+    }
+
+    public override void onCursorClick(int button)
+    {
+        //float pilotDistance Vector2.Distance(gameObject.transform.position, pilot.gameObject.transform.position);
+        if (isPickable)
+            pilot.pickUpItem(this);
+    }
+
+    public ItemType type;
+
+    public bool UseItemOn(ShipComponent component)
+    {
+        return false;
+    }
 	// Use this for initialization
 	void Start ()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        pilot = FindObjectOfType<PilotController>();
+        isPickable = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-		
-	}
+        if (other.name == "PilotPickupRange")
+        {
+            isPickable = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.name == "PilotPickupRange")
+        {
+            isPickable = false;
+        }
+    }
 }
