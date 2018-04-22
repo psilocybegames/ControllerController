@@ -12,7 +12,7 @@ public class GameLoop : MonoBehaviour {
     public static float travelTime = Config.travelTime;
     public static float currentTravelTime = 0f;
 
-    
+   
     public static float timeElapsed = 0f;
     public static float possesionMeter = 0f;
     public static float maxPossesion = 10f;
@@ -46,16 +46,20 @@ public class GameLoop : MonoBehaviour {
     }
 
 
+    public static void damageShipByAMine()
+    {
+        if (!ship.helmEngaged)
+        {
+            damageShip(Config.AsteroidDamage);
+        }
+    }
 
     public static void damageShipByAsteroid()
     {
 
-        if(!ship.helmEngaged)
+        if(!ship.shieldOvercharged)
         {
             damageShip(Config.AsteroidDamage);
-
-
-
         }
 
     }

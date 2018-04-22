@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Config
 {
     public static float CursorSpeed = 0.1f;
-    public static float travelTime = 400;
+    public static float travelTime = 10;
 
 
 
@@ -16,6 +16,9 @@ public static class Config
     public static int xboxControlScheme = 0;
     public static int keyboardControlScheme = 1;
     public static int psControlScheme = 2;
+
+
+
     public static List<KeyCode> buttons;
     public static float keyRemovalTime = 0.2f;
     public static float constantPossesionChange = 0.0005f;
@@ -27,6 +30,13 @@ public static class Config
 
     public static float AsteroidDamageTime = 3f;
     public static float AsteroidDamage = 0.2f;
+    public static float MinesDamageTime = 3f;
+    public static float MinesDamage = 3f;
+
+    public static float PirateDamageTime = 3f;
+    public static float PirateDamage = 3f;
+
+
 
     public static void switchControlScheme(int scheme)
     {
