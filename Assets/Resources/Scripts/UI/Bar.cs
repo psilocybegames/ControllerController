@@ -30,7 +30,7 @@ public class Bar : MonoBehaviour {
 
     public void setSpriteMaskSizeAndPosition()
     {
-        float height = filler.sprite.bounds.size.y;
+        float height = filler.sprite.bounds.size.y - 60;
 
         sm.transform.localScale = new Vector3(sm.transform.localScale.x, 1f - percentFilled, sm.transform.localScale.z);
         float offset = (height * percentFilled)/2f;

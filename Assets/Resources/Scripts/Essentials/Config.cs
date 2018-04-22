@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Config
 {
     public static float CursorSpeed = 0.1f;
-    public static float travelTime = 10;
+    public static float travelTime = 400;
 
 
 
@@ -35,8 +35,11 @@ public static class Config
 
     public static float PirateDamageTime = 3f;
     public static float PirateDamage = 3f;
-
-
+    public static float shakeCameraOnDamageTime = 0.3f;
+    public static float cameraShakeFactor = 0.01f;
+    public static float DamageFlashTime = 0.1f;
+    public static float sunDamage = 0.05f;
+    public static float sunDamageTime = 1f;
 
     public static void switchControlScheme(int scheme)
     {

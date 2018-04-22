@@ -28,7 +28,7 @@ public class ShipTravelTimeBar : MonoBehaviour {
     public void setTravelTimeSymbolLocation()
     {
         float percent = GameLoop.currentTravelTime / GameLoop.travelTime;
-        shipSymbol.transform.localPosition = new Vector3(-travelLineWidth/2f + travelLineWidth * percent, 0f, 0f);
+        shipSymbol.transform.localPosition = new Vector3(-travelLineWidth + travelLineWidth * percent, 0f, 0f);
         
     }
 }
