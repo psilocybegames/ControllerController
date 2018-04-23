@@ -23,6 +23,7 @@ public class ShieldCore : ShipComponent
         GameLoop.ship.shieldOvercharged = true;
         shield.SetActive(true);
         GetComponent<Animator>().SetBool("ShieldOn", true);
+        Messages.showSubText(UnityHelper.ColorText("Shields Overcharged!", Color.green));
 
     }
 
@@ -38,7 +39,7 @@ public class ShieldCore : ShipComponent
     {
         base.onComponentDeactivation();
         GetComponent<Animator>().SetBool("ShieldOn", false);
-
+        
         GameLoop.ship.shieldOvercharged = false;
         shield.SetActive(false);
         shield.transform.localScale = originalShieldScale;

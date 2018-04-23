@@ -16,7 +16,11 @@ public class Helm : ShipComponent
         base.shipComponentActivated();
         GameLoop.ship.helmEngaged = true;
         EventObjects.startSwayingVertically();
-        
+
+        if (GameLoop.gl.currentEvent.GetType() == typeof(MinesEvent))
+            Messages.showSubText(UnityHelper.ColorText("Evasive manouvers!", Color.green));
+
+
 
     }
 

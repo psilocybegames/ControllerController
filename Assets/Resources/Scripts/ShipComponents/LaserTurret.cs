@@ -16,10 +16,12 @@ public class LaserTurret : ShipComponent
         base.shipComponentActivated();
         GameLoop.ship.laserTurretFiring = true;
         Beam.SetActive(true);
-        
+        Messages.showSubText(UnityHelper.ColorText("Laser turret engaged!", Color.green));
+
+
     }
 
-   
+
     public override void onComponentDeactivation()
     {
         base.onComponentDeactivation();

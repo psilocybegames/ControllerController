@@ -24,16 +24,23 @@ public class AsteroidEvent : Event {
 
     }
 
+    public override void onHalfDuration()
+    {
+        base.onHalfDuration();
+        EventObjects.asteroids.Stop();
+
+    }
+
     public override void onEndEvent()
     {
         base.onEndEvent();
-        EventObjects.asteroids.Stop();
     }
 
     public override void onFireEvent()
     {
         base.onFireEvent();
-        Messages.showMessage("Asteroids!");
+        Messages.showMessage(UnityHelper.ColorText("Asteroids!", Color.white));
+        Messages.showSubText(UnityHelper.ColorText("Shoot them with lasers!", Color.green));
         EventObjects.asteroids.Play();
     }
 }

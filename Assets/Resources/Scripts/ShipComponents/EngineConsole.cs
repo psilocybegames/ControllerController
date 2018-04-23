@@ -10,6 +10,8 @@ public class EngineConsole : ShipComponent {
         base.shipComponentActivated();
         GameLoop.ship.enginesTuned = true;
         GameLoop.ship.shipSpeed = Config.shipSpeedFast;
+        Messages.showSubText(Messages.st.text + UnityHelper.ColorText("\nTravel speed increased!", Color.cyan));
+
         EventObjects.setAllParticleSystemSpeed();
     }
 

@@ -14,7 +14,7 @@ public class ShipTravelTimeBar : MonoBehaviour {
     {
         shipSymbol = transform.Find("Symbol").GetComponent<SpriteRenderer>();
         travelLine = GetComponent<SpriteRenderer>();
-        travelLineWidth = travelLine.bounds.size.x * travelLine.transform.localScale.x;
+        travelLineWidth = (travelLine.bounds.size.x);
 	}
 
     

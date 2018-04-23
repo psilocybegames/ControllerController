@@ -29,9 +29,20 @@ public class MinesEvent : Event {
         EventObjects.mines.Stop();
     }
 
+    public override void onHalfDuration()
+    {
+        base.onHalfDuration();
+        EventObjects.mines.Stop();
+
+    }
+
+
+
     public override void onFireEvent()
     {
-        Messages.showMessage("Asteroids!");
+        Messages.showMessage(UnityHelper.ColorText("Mines!", Color.white));
+        Messages.showSubText(UnityHelper.ColorText("Use helm to navigate safely!",Color.green));
+
         base.onFireEvent();
         EventObjects.mines.Play();
     }

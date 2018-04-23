@@ -83,7 +83,7 @@ public class GameLoop : MonoBehaviour {
     public static void damageShipByAsteroid()
     {
 
-        if(!ship.shieldOvercharged)
+        if(!ship.laserTurretFiring)
         {
             damageShip(Config.AsteroidDamage);
         }
