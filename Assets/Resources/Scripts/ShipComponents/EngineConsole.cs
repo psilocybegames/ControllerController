@@ -13,6 +13,9 @@ public class EngineConsole : ShipComponent {
         Messages.showSubText(Messages.st.text + UnityHelper.ColorText("\nTravel speed increased!", Color.cyan));
         GetComponent<Animator>().SetBool("Activated", true);
         EventObjects.setAllParticleSystemSpeed();
+
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Engine_Overcharge_Redux);
     }
 
     
@@ -23,6 +26,9 @@ public class EngineConsole : ShipComponent {
         GameLoop.ship.enginesTuned = false;
         GameLoop.ship.shipSpeed = Config.shipSpeedNormal;
         EventObjects.setAllParticleSystemSpeed();
+
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Engine_humm);
     }
 
 }

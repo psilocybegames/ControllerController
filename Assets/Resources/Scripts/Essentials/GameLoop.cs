@@ -54,7 +54,7 @@ public class GameLoop : MonoBehaviour {
     public static void damageShipByArcWelder()
     {
         damageShip(0.05f);
-        
+        soundManagerInstance.PlaySingle(soundManagerInstance.Arc_Welder);
     }
 
     public static SpaceShip ship;
@@ -107,6 +107,8 @@ public class GameLoop : MonoBehaviour {
     {
 
         shipHealth -= d;
+        AudioClip[] explosions = new AudioClip[] {soundManagerInstance.explosion_1,soundManagerInstance.explosion_2,soundManagerInstance.explosion_3 };
+        soundManagerInstance.PlayOneOf(explosions);
         playDamagedAnimation();
 
     }
@@ -318,6 +320,7 @@ public class GameLoop : MonoBehaviour {
             p.controlledByPilot = true;
             Config.switchControlScheme(Config.controlScheme, false);
             p.switchSpriteToHuman();
+            soundManagerInstance.PlaySingle(soundManagerInstance.Human_control_back);
         }
         else
         {
@@ -327,6 +330,7 @@ public class GameLoop : MonoBehaviour {
             p.controlledByPilot = false;
             p.switchSpriteToAlien();
             Config.switchControlScheme(Config.controlScheme, true);
+            soundManagerInstance.PlaySingle(soundManagerInstance.Alien_control);
 
         }
 

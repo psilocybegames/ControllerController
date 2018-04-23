@@ -27,6 +27,9 @@ public class ShieldCore : ShipComponent
         {
             if (GameLoop.gl.currentEvent.GetType() == typeof(SunEvent))
                 Messages.showSubText(UnityHelper.ColorText("Shields Overcharged!", Color.green));
+
+            SoundManager manager = GameLoop.getSoundManager();
+            manager.PlaySingle(manager.shield_overcharge_full);
         }
 
 
@@ -49,6 +52,8 @@ public class ShieldCore : ShipComponent
         shield.SetActive(false);
         shield.transform.localScale = originalShieldScale;
 
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Shields_shimmering_2);
 
     }
 

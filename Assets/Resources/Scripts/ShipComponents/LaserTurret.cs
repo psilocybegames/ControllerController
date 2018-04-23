@@ -20,6 +20,8 @@ public class LaserTurret : ShipComponent
         { 
         if (GameLoop.gl.currentEvent.GetType() == typeof(AsteroidEvent))
             Messages.showSubText(UnityHelper.ColorText("Laser turret engaged!", Color.green));
+            SoundManager manager = GameLoop.getSoundManager();
+            manager.PlaySingle(manager.laser_zap);
         }
 
 
