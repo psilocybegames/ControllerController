@@ -13,6 +13,9 @@ public class PilotController : MonoBehaviour {
     public float moveSpeed = 2f;
     public float keyboardAxisBaseValue = 1f;
 
+
+
+
     public float removeKeyCounter = 0f;
     public float removeKeyTime = Config.keyRemovalTime;
 
@@ -20,12 +23,13 @@ public class PilotController : MonoBehaviour {
     public Rigidbody2D r;
     public Animator a;
 
-    private bool IsOnLadder;
+    public bool IsOnLadder;
     private float storedGravity;
     public List<KeyCode> pressedKeys;
 
     public UsableItem heldItem;
     private HeldItemBox heldItemBox;
+    public bool clickedThisFrame = false;
 
     void Start () {
 
@@ -40,20 +44,28 @@ public class PilotController : MonoBehaviour {
 	
     public int checkForClick()
     {
-        if (pressedKeys.Contains(Config.player1useOrPickupKeys[(int)Config.controlScheme]))
+        if (Input.GetKeyDown(Config.pickUpUseItemKey))
+        {
             return 1;
+        }
         else
             return 0;
+        
     }
 
 	
 	void Update ()
     {
-
+        listenToControlSchemeChange();
         checkPlayerInput();
         removeKeysFromLoggedInput();
         	
 	}
+
+    public void listenToControlSchemeChange()
+    {
+        
+    }
 
     public void removeKeysFromLoggedInput()
     {
@@ -89,11 +101,10 @@ public class PilotController : MonoBehaviour {
     public void checkPlayerInput()
     {
 
-        // Add difference with controlledBy flags
         string axisNumber = "1";
 
         logKeyInput();
-
+        handleKeyInput();
         if(Config.controlScheme == Config.ControlScheme.KeybordAndMouse)
         {
             KeyCode currentPlayerLeft;
@@ -143,16 +154,39 @@ public class PilotController : MonoBehaviour {
             verDir = 0f;
         }
 
-        if (pressedKeys.Contains(Config.player1dropKeys[(int)Config.controlScheme]))
-            dropHeldItem();
+        
     }
+
+    public void handleKeyInput()
+    {
+   
+
+        if (Input.GetKeyDown(Config.dropItemKey))
+            dropHeldItem();
+
+
+
+
+
+
+
+
+    }
+
+    public void LateUpdate()
+    {
+
+        clickedThisFrame = false;
+
+    }
+        
 
     public void logKeyInput()
     {
         
         foreach(KeyCode c in Config.buttons)
         {
-            if (Input.GetKey(c) && !pressedKeys.Contains(c))
+            if (Input.GetKey(c))
                 pressedKeys.Add(c);
         }
     }
@@ -170,6 +204,7 @@ public class PilotController : MonoBehaviour {
         {
             heldItem.gameObject.transform.position = gameObject.transform.position;
             heldItem = null;
+            GameLoop.changeCursorToDefault();
         }
     }
 
@@ -181,5 +216,6 @@ public class PilotController : MonoBehaviour {
         }
         heldItem = pickedItem;
         pickedItem.gameObject.transform.position = heldItemBox.getItemMovePosition();
+        GameLoop.changeCursorSpriteTo(pickedItem.GetComponent<SpriteRenderer>().sprite);
     }
 }

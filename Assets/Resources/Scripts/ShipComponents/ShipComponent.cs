@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,25 +8,71 @@ public class ShipComponent : InteractableObject
     private PilotController pilot;
     public bool isInRangeToUseObject;
     public UsableItem.ItemType itemNeeded;
+    public float activationDuration = 10f;
+    public float activationCounter = 0f;
 
-    public virtual void ShipComponentActivated()
+
+    public bool activated = false;
+
+
+    public virtual void shipComponentActivated()
     {
-        // I made it jump just for testing purposes
-        Vector3 currentPosition = gameObject.transform.position;
-        gameObject.transform.position = new Vector3(currentPosition.x, currentPosition.y + 5, currentPosition.z);
+        activated = true;
     }
 
     public override void onCursorClick(int button)
     {
-        //float pilotDistance Vector2.Distance(gameObject.transform.position, pilot.gameObject.transform.position);
-        if (isInRangeToUseObject && pilot.heldItem.type == itemNeeded)
+
+        if(pilot.heldItem != null)
         {
-            //Do something
-            ShipComponentActivated();
+            Debug.Log("aa");
+        if (pilot.heldItem.type == itemNeeded)
+            {
+            shipComponentActivated();
+            }
+            else
+            {
+
+                GameLoop.wrongItemUsedOnStation();
+
+            }
         }
+        
+
     }
 
-    // Use this for initialization
+    
+    public virtual void Update()
+    {
+        if(activated)
+        {
+            processActivatedAnimation();
+
+            if (activationCounter > activationDuration)
+            {
+                activationCounter = 0f;
+                activated = false;
+                onComponentDeactivation();
+            }
+            else
+                activationCounter += Time.deltaTime;
+        }
+
+
+    }
+
+    public virtual void onComponentDeactivation()
+    {
+        
+    }
+
+    public virtual void processActivatedAnimation()
+    {
+
+        transform.localScale = Vector3.one + Vector3.one * Mathf.Sin(Time.time * 10f) * 0.1f;
+        
+    }
+
     void Start ()
     {
         pilot = FindObjectOfType<PilotController>();

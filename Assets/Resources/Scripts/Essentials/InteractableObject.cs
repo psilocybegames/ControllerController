@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour {
+public class InteractableObject : MonoBehaviour
+
+{
 
     public virtual void onCursorClick(int button)
     {

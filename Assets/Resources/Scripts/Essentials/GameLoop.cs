@@ -13,7 +13,7 @@ public class GameLoop : MonoBehaviour {
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
     public static float currentTravelTime = 0f;
-
+    public static SpriteRenderer cursor;
     public static GameLoop gl;
     public static float timeElapsed = 0f;
     public static float possesionMeter = 0f;
@@ -25,6 +25,12 @@ public class GameLoop : MonoBehaviour {
 
     public static DamageOverlay dmgOverlay;
     public static List<Sprite> asteroidSprites;
+
+    public static void wrongItemUsedOnStation()
+    {
+        //play sound
+    }
+
     public static List<Sprite> mineSprites;
     public static List<Sprite> pirateShipSprites;
 
@@ -32,6 +38,7 @@ public class GameLoop : MonoBehaviour {
 
     public static SpaceShip ship;
     public List<Event> events;
+    public static Sprite defaultCursorSprite;
 
     public void switchControls()
     {
@@ -106,9 +113,12 @@ public class GameLoop : MonoBehaviour {
 
     void Awake ()
     {
+        p = GameObject.Find("ThePilot").GetComponent<PilotController>();
+        cursor = p.transform.Find("Cursor").GetComponent<SpriteRenderer>();
+        defaultCursorSprite = cursor.sprite;
+
         Config.initControlScheme();
         gl = this;
-        p = GameObject.Find("ThePilot").GetComponent<PilotController>();
         healthBar = GameObject.Find("ShipHealthBar").GetComponent<Bar>();
         ship = GameObject.Find("Spaceship").GetComponent<SpaceShip>();
         possesionBar = GameObject.Find("PossesionBar").GetComponent<Bar>();
@@ -214,6 +224,21 @@ public class GameLoop : MonoBehaviour {
             alienWins();
         
 	}
+
+    public static void changeCursorToDefault()
+    {
+        cursor.sprite = defaultCursorSprite;
+        cursor.transform.localScale = Vector3.one;
+    }
+
+
+    public static void changeCursorSpriteTo(Sprite s)
+    {
+
+        cursor.sprite = s;
+        cursor.transform.localScale = Vector3.one * 2f;
+
+    }
 
     public void alienWins()
     {

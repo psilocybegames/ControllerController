@@ -5,13 +5,5 @@ using UnityEngine;
 public class ArcWelder : UsableItem
 {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

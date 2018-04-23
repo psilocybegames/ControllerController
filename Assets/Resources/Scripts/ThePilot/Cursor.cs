@@ -6,7 +6,6 @@ public class Cursor : MonoBehaviour
 {
     private PilotController pilot;
 
-    public float maximumDistance = 5;
 
     public void OnTriggerStay2D(Collider2D c)
     {
@@ -50,18 +49,24 @@ public class Cursor : MonoBehaviour
 
     void Update()
     {
-
-        horDir = Input.GetAxis("Cursor X");
-        verDir = Input.GetAxis("Cursor Y");
+        if(GameLoop.p.controlledByAlien)
+        { 
+        horDir = Input.GetAxis("Cursor X2");
+        verDir = Input.GetAxis("Cursor Y2");
+        }
+        else { 
+        horDir = Input.GetAxis("Cursor X1");
+        verDir = Input.GetAxis("Cursor Y1");
+        }
 
     }
 
     void FixedUpdate()
     {
-        Vector3 newPosition = transform.position + new Vector3(horDir, verDir, 0f) * Config.CursorSpeed;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(horDir, verDir) * Config.CursorSpeed + GameLoop.p.r.velocity;
 
-        if(Vector3.Distance(newPosition, pilot.gameObject.transform.position) <= maximumDistance)
-            transform.position += new Vector3(horDir, verDir, 0f) * Config.CursorSpeed;
+
+      
 
     }
 }

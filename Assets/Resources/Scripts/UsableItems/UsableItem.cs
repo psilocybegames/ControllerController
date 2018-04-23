@@ -4,50 +4,38 @@ using UnityEngine;
 
 public class UsableItem : InteractableObject
 {
-    private PilotController pilot;
-    public bool isPickable;
+    public PilotController pilot;
+    public ItemType type;
 
     public enum ItemType
     {
         ControlRod,
         PilotClearance,
         InhibitorReleaseKey,
-        EngineerHud
+        EngineerHud,
+        ArcWelder
     }
 
     public override void onCursorClick(int button)
     {
-        //float pilotDistance Vector2.Distance(gameObject.transform.position, pilot.gameObject.transform.position);
-        if (isPickable)
+        if(!pilot.clickedThisFrame)
+        {
+            pilot.clickedThisFrame = true;
             pilot.pickUpItem(this);
+        }
     }
 
-    public ItemType type;
 
     public bool UseItemOn(ShipComponent component)
     {
         return false;
     }
-	// Use this for initialization
-	void Start ()
+
+    public virtual void Start()
     {
-        pilot = FindObjectOfType<PilotController>();
-        isPickable = false;
+        pilot = GameLoop.p;
+        
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.name == "PilotPickupRange")
-        {
-            isPickable = true;
-        }
-    }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.name == "PilotPickupRange")
-        {
-            isPickable = false;
-        }
-    }
 }

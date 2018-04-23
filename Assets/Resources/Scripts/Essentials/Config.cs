@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Config
 {
-    public static float CursorSpeed = 0.1f;
+    public static float CursorSpeed = 3f;
     public static float travelTime = 400;
 
     public enum ControlScheme
@@ -16,11 +16,6 @@ public static class Config
     }
 
     public static ControlScheme controlScheme = 0;
-    public static List<KeyCode> buttons;
-    public static List<KeyCode> player1useOrPickupKeys;
-    public static List<KeyCode> player1dropKeys;
-    public static List<KeyCode> player2useOrPickupKeys;
-    public static List<KeyCode> player2dropKeys;
 
     public static KeyCode player1UpKey = KeyCode.W;
     public static KeyCode player1DownKey = KeyCode.S;
@@ -31,6 +26,17 @@ public static class Config
     public static KeyCode player2DownKey = KeyCode.DownArrow;
     public static KeyCode player2LeftKey = KeyCode.LeftArrow;
     public static KeyCode player2RightKey = KeyCode.RightArrow;
+
+    public static KeyCode dropItemKey;
+    public static KeyCode pickUpUseItemKey;
+
+    public static KeyCode buttonA;
+    public static KeyCode buttonB;
+    public static KeyCode buttonX;
+    public static KeyCode buttonY;
+
+
+
 
     public static float keyRemovalTime = 0.2f;
     public static float constantPossesionChange = 0.0005f;
@@ -52,59 +58,89 @@ public static class Config
     public static float DamageFlashTime = 0.1f;
     public static float sunDamage = 0.05f;
     public static float sunDamageTime = 1f;
+    public static List<KeyCode> buttons;
 
-    public static void switchControlScheme(ControlScheme newScheme)
+    public static void switchControlScheme(ControlScheme newScheme, bool alienInControl)
     {
+        buttons = new List<KeyCode>();
         List<KeyCode> currentControls = new List<KeyCode>();
         controlScheme = newScheme;
-        switch(newScheme)
+
+        if(alienInControl)
+        { 
+        switch (newScheme)
         {
             case ControlScheme.XboxController:
-                currentControls.Add(KeyCode.Joystick1Button0); // A button
-                currentControls.Add(KeyCode.Joystick1Button1); // B button
-                currentControls.Add(KeyCode.Joystick2Button0);
-                currentControls.Add(KeyCode.Joystick2Button1);
+
+                dropItemKey = KeyCode.Joystick2Button1;
+                pickUpUseItemKey = KeyCode.Joystick2Button0;
+                buttonA = KeyCode.Joystick2Button0;
+                buttonB = KeyCode.Joystick2Button1;
+                buttonX = KeyCode.Joystick2Button2;
+                buttonY = KeyCode.Joystick2Button3;
                 break;
             case ControlScheme.KeybordAndMouse:
-                currentControls.Add(KeyCode.Mouse0);
-                currentControls.Add(KeyCode.Mouse1);
-                currentControls.Add(KeyCode.Mouse0);
-                currentControls.Add(KeyCode.Mouse1);
+                dropItemKey = KeyCode.Mouse1;
+                pickUpUseItemKey = KeyCode.Mouse0;
+                buttonA = KeyCode.Mouse0;
+                buttonB = KeyCode.Mouse1;
+                buttonX = 0;
+                buttonY = 0;
                 break;
             case ControlScheme.PlayStationController:
-                currentControls.Add(KeyCode.Joystick1Button1); // X button on PS4 controller
-                currentControls.Add(KeyCode.Joystick1Button2); // O button on PS4 controller
-                currentControls.Add(KeyCode.Joystick2Button1);
-                currentControls.Add(KeyCode.Joystick2Button2);
+                dropItemKey = KeyCode.Joystick2Button2;
+                pickUpUseItemKey = KeyCode.Joystick2Button0;
+                buttonA = KeyCode.Joystick2Button0;
+                buttonB = KeyCode.Joystick2Button1;
+                buttonX = KeyCode.Joystick2Button2;
+                buttonY = KeyCode.Joystick2Button3;
                 break;
         }
-        buttons = currentControls;
+
+        }
+        else
+        {
+            switch (newScheme)
+            {
+                case ControlScheme.XboxController:
+
+                    dropItemKey = KeyCode.Joystick1Button1;
+                    pickUpUseItemKey = KeyCode.Joystick1Button0;
+                    buttonA = KeyCode.Joystick1Button0;
+                    buttonB = KeyCode.Joystick1Button1;
+                    buttonX = KeyCode.Joystick1Button2;
+                    buttonY = KeyCode.Joystick1Button3;
+                    break;
+                case ControlScheme.KeybordAndMouse:
+                    dropItemKey = KeyCode.Mouse1;
+                    pickUpUseItemKey = KeyCode.Mouse0;
+                    buttonA = KeyCode.Mouse0;
+                    buttonB = KeyCode.Mouse1;
+                    buttonX = 0;
+                    buttonY = 0;
+                    break;
+                case ControlScheme.PlayStationController:
+                    dropItemKey = KeyCode.Joystick2Button2;
+                    pickUpUseItemKey = KeyCode.Joystick2Button0;
+                    buttonA = KeyCode.Joystick1Button0;
+                    buttonB = KeyCode.Joystick1Button1;
+                    buttonX = KeyCode.Joystick1Button2;
+                    buttonY = KeyCode.Joystick1Button3;
+                    break;
+            }
+
+
+        }
+
+
+        buttons.Add(buttonA);
+        buttons.Add(buttonB);
+        buttons.Add(buttonX);
+        buttons.Add(buttonY);
     }
 
     public static void initControlScheme()
     {
-        buttons = new List<KeyCode>();
-        player1useOrPickupKeys = new List<KeyCode>();
-        player1dropKeys = new List<KeyCode>();
-        player2useOrPickupKeys = new List<KeyCode>();
-        player2dropKeys = new List<KeyCode>();
-
-        player1useOrPickupKeys.Add(KeyCode.Joystick1Button0);
-        player1useOrPickupKeys.Add(KeyCode.Mouse0);
-        player1useOrPickupKeys.Add(KeyCode.Joystick1Button1);
-
-        player1dropKeys.Add(KeyCode.Joystick1Button1);
-        player1dropKeys.Add(KeyCode.Mouse1);
-        player1dropKeys.Add(KeyCode.Joystick1Button2);
-
-        player2useOrPickupKeys.Add(KeyCode.Joystick2Button0);
-        player2useOrPickupKeys.Add(KeyCode.Mouse0);
-        player2useOrPickupKeys.Add(KeyCode.Joystick2Button1);
-
-        player2dropKeys.Add(KeyCode.Joystick2Button1);
-        player2dropKeys.Add(KeyCode.Mouse1);
-        player2dropKeys.Add(KeyCode.Joystick2Button2);
-
-        switchControlScheme(controlScheme);
+        switchControlScheme(controlScheme,GameLoop.p.controlledByAlien);
     }
 }
