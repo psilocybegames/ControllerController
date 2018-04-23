@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Config
 {
     public static float CursorSpeed = 3f;
-    public static float travelTime = 400;
+    public static float travelTime = 200;
 
     public enum ControlScheme
     {
@@ -43,20 +43,20 @@ public static class Config
     public static float movementPossesionChange = 0.01f;
     public static int minEvents = 4;
     public static int maxEvents = 7;
-    public static float minNoEventsTime = 10f;
-    public static float maxNoEventsTime = 25f;
+    public static float minNoEventsTime = 5f;
+    public static float maxNoEventsTime = 10f;
 
-    public static float AsteroidDamageTime = 3f;
-    public static float AsteroidDamage = 0.2f;
+    public static float AsteroidDamageTime = 5f;
+    public static float AsteroidDamage = 0.5f;
     public static float MinesDamageTime = 3f;
-    public static float MinesDamage = 3f;
+    public static float MinesDamage = 0.5f;
 
     public static float PirateDamageTime = 3f;
     public static float PirateDamage = 3f;
     public static float shakeCameraOnDamageTime = 0.3f;
     public static float cameraShakeFactor = 0.01f;
     public static float DamageFlashTime = 0.1f;
-    public static float sunDamage = 0.05f;
+    public static float sunDamage = 0.1f;
     public static float sunDamageTime = 1f;
     public static List<KeyCode> buttons;
     public static float shipSpeedNormal = 2f;
