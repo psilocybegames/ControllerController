@@ -34,6 +34,11 @@ public class AsteroidEvent : Event {
     public override void onEndEvent()
     {
         base.onEndEvent();
+        if (Messages.t.text == UnityHelper.ColorText("Asteroids!", Color.white))
+            Messages.t.text = "";
+
+        if (Messages.st.text == UnityHelper.ColorText("Shoot them with lasers!", Color.green))
+            Messages.st.text = "";
     }
 
     public override void onFireEvent()

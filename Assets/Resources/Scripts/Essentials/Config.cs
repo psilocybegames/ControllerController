@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Config
 {
     public static float CursorSpeed = 3f;
-    public static float travelTime = 200;
+    public static float travelTime = 120;
 
     public enum ControlScheme
     {
@@ -41,8 +41,8 @@ public static class Config
     public static float keyRemovalTime = 0.2f;
     public static float constantPossesionChange = 0.01000f;
     public static float movementPossesionChange = 0.01f;
-    public static int minEvents = 4;
-    public static int maxEvents = 7;
+    public static int minEvents = 15;
+    public static int maxEvents = 20;
     public static float minNoEventsTime = 5f;
     public static float maxNoEventsTime = 10f;
 

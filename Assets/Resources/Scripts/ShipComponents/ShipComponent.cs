@@ -27,6 +27,7 @@ public class ShipComponent : InteractableObject
             if (pilot.heldItem.type == itemNeeded)
             {
                 shipComponentActivated();
+                GameLoop.p.a.SetTrigger("Tinker");
             }
             else
             {
@@ -35,12 +36,12 @@ public class ShipComponent : InteractableObject
                     if (pilot.controlledByAlien)
                     { 
                         GameLoop.repairShip();
-                        
+                        GameLoop.p.a.SetTrigger("Tinker");
                     }
                     else
                     {
                         GameLoop.damageShipByArcWelder();
-
+                        GameLoop.p.a.SetTrigger("Tinker");
                     }
 
                     pilot.dropHeldItem();

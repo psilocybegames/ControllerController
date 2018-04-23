@@ -14,7 +14,7 @@ public class PilotController : MonoBehaviour {
     public float keyboardAxisBaseValue = 1f;
 
 
-
+    public SpriteRenderer tentacles;
 
     public float removeKeyCounter = 0f;
     public float removeKeyTime = Config.keyRemovalTime;
@@ -36,7 +36,7 @@ public class PilotController : MonoBehaviour {
         pressedKeys = new List<KeyCode>();
         a.SetBool("Possesed", false);
         r = GetComponent<Rigidbody2D>();
-
+        tentacles = transform.Find("Tentacles").GetComponent<SpriteRenderer>();
         heldItem = null;
         heldItemBox = FindObjectOfType<HeldItemBox>();
 

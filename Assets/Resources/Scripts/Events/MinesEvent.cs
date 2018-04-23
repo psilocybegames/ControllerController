@@ -7,6 +7,9 @@ public class MinesEvent : Event {
     public float damageCounter = 0f;
     public float damageTime = Config.MinesDamageTime;
 
+
+
+
     public override void processEvent()
     {
         base.processEvent();
@@ -27,6 +30,11 @@ public class MinesEvent : Event {
     {
         base.onEndEvent();
         EventObjects.mines.Stop();
+        if (Messages.t.text == UnityHelper.ColorText("Mines!", Color.white))
+            Messages.t.text = "";
+
+        if (Messages.st.text == UnityHelper.ColorText("Use helm to navigate safely!", Color.green))
+            Messages.st.text = "";
     }
 
     public override void onHalfDuration()

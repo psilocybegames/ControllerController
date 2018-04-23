@@ -22,6 +22,7 @@ public class GameLoop : MonoBehaviour {
     public Bar healthBar;
     public Bar possesionBar;
     public Event currentEvent;
+    public Event lastEvent = null;
 
     public static DamageOverlay dmgOverlay;
     public static List<Sprite> asteroidSprites;
@@ -36,11 +37,15 @@ public class GameLoop : MonoBehaviour {
 
     public static void repairShip()
     {
-        
+        if (shipHealth < maxShipHealth)
+            shipHealth += 0.05f;
+
+
     }
 
     public static void damageShipByArcWelder()
     {
+        damageShip(0.05f);
         
     }
 
@@ -261,7 +266,17 @@ public class GameLoop : MonoBehaviour {
     public void processEvents()
     {
         currentEvent = getCurrentEvent();
-        if(currentEvent != null)
+        if(currentEvent != lastEvent)
+            {
+            if (lastEvent != null)
+                if(!lastEvent.ended)
+                    lastEvent.onEndEvent();
+
+
+            lastEvent = currentEvent;
+
+        }
+        if (currentEvent != null)
         {
             currentEvent.processEvent();
         }
@@ -290,7 +305,7 @@ public class GameLoop : MonoBehaviour {
         if (p.controlledByAlien)
         {
             p.a.SetBool("Possesed", false);
-
+            p.tentacles.gameObject.SetActive(false);
             p.controlledByAlien = false;
             p.controlledByPilot = true;
             Config.switchControlScheme(Config.controlScheme, false);
@@ -300,6 +315,7 @@ public class GameLoop : MonoBehaviour {
         {
             p.a.SetBool("Possesed", true);
             p.controlledByAlien = true;
+            p.tentacles.gameObject.SetActive(true);
             p.controlledByPilot = false;
             p.switchSpriteToAlien();
             Config.switchControlScheme(Config.controlScheme, true);
