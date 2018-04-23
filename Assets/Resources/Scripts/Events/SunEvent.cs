@@ -24,15 +24,24 @@ public class SunEvent : Event {
 
 
     }
-
+    
     public override void onEndEvent()
     {
         base.onEndEvent();
         EventObjects.sun.Stop();
+        
+
+
+        if (Messages.t.text == UnityHelper.ColorText("Too close to the sun!", Color.white))
+            Messages.t.text = "";
+
+        if (Messages.st.text == UnityHelper.ColorText("Overcharge the shields!", Color.green))
+            Messages.st.text = "";
     }
 
     public override void onFireEvent()
     {
+        Debug.Log("Sun");
         base.onFireEvent();
         SoundManager manager = GameLoop.getSoundManager();
         manager.PlaySingle(manager.Sun_frying);

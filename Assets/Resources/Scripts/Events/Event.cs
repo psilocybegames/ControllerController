@@ -11,7 +11,7 @@ public class Event {
     public float duration = 15f;
     public float elapsed = 0f;
     public float severity = 1f;
-    
+    public bool ended = false;
 
     // Always use base() in events
     public virtual void processEvent()
@@ -25,7 +25,7 @@ public class Event {
 
         }
 
-        if (elapsed > duration)
+        if (elapsed > duration && !ended)
             onEndEvent();
         else
             elapsed += Time.deltaTime;
@@ -55,7 +55,7 @@ public class Event {
 
     public virtual void onEndEvent()
     {
-
+        ended = true;
 
 
 

@@ -12,9 +12,9 @@ public class PilotController : MonoBehaviour {
     public float verDir = 0f;
     public float moveSpeed = 2f;
     public float keyboardAxisBaseValue = 1f;
-
+    
     SoundManager soundManagerInstance;
-
+    public SpriteRenderer tentacles;
 
     public float removeKeyCounter = 0f;
     public float removeKeyTime = Config.keyRemovalTime;
@@ -36,7 +36,7 @@ public class PilotController : MonoBehaviour {
         pressedKeys = new List<KeyCode>();
         a.SetBool("Possesed", false);
         r = GetComponent<Rigidbody2D>();
-
+        tentacles = transform.Find("Tentacles").GetComponent<SpriteRenderer>();
         heldItem = null;
         heldItemBox = FindObjectOfType<HeldItemBox>();
         soundManagerInstance = FindObjectOfType<SoundManager>();
