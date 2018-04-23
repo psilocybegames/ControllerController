@@ -130,7 +130,11 @@ public class PilotController : MonoBehaviour {
             verDir = 0f;
         }
 
-        
+        if (horDir != 0 || verDir != 0)
+            GetComponent<AudioSource>().UnPause();
+        else
+            GetComponent<AudioSource>().Pause();
+
     }
 
     public void handleKeyInput()
