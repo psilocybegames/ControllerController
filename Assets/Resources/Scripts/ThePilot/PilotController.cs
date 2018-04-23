@@ -13,7 +13,7 @@ public class PilotController : MonoBehaviour {
     public float moveSpeed = 2f;
     public float keyboardAxisBaseValue = 1f;
 
-
+    SoundManager soundManagerInstance;
 
 
     public float removeKeyCounter = 0f;
@@ -39,7 +39,7 @@ public class PilotController : MonoBehaviour {
 
         heldItem = null;
         heldItemBox = FindObjectOfType<HeldItemBox>();
-
+        soundManagerInstance = FindObjectOfType<SoundManager>();
     }
 	
     public int checkForClick()

@@ -34,4 +34,11 @@ public class SoundManager : MonoBehaviour
         source.clip = clip;
         source.Play();
     }
+
+    public void PlayOneOf(params AudioClip[] clips)
+    {
+        int randomIndex = Random.Range(0, clips.Length);
+        source.clip = clips[randomIndex];
+        source.Play();
+    }
 }

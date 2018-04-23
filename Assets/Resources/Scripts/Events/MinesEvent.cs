@@ -44,6 +44,8 @@ public class MinesEvent : Event {
         Messages.showSubText(UnityHelper.ColorText("Use helm to navigate safely!",Color.green));
 
         base.onFireEvent();
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Shield_colission_mine);
         EventObjects.mines.Play();
     }
 }

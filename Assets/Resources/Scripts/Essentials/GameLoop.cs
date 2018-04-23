@@ -9,6 +9,7 @@ public class GameLoop : MonoBehaviour {
     public static PilotController p;
     public static float shipHealth = 10f;
 
+    private static SoundManager soundManagerInstance = null;
     
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
@@ -25,6 +26,13 @@ public class GameLoop : MonoBehaviour {
 
     public static DamageOverlay dmgOverlay;
     public static List<Sprite> asteroidSprites;
+
+    public static SoundManager getSoundManager()
+    {
+        if (soundManagerInstance == null)
+            soundManagerInstance = FindObjectOfType<SoundManager>();
+        return soundManagerInstance;
+    }
 
     public static void wrongItemUsedOnStation()
     {
@@ -57,7 +65,7 @@ public class GameLoop : MonoBehaviour {
 
     void Start()
     {
-        
+        soundManagerInstance = FindObjectOfType<SoundManager>();
 
 
     }
@@ -250,12 +258,12 @@ public class GameLoop : MonoBehaviour {
 
     public void alienWins()
     {
-        
+        Messages.showMessage("Alien Wins");
     }
 
     public void humanWins()
     {
-
+        Messages.showMessage("Human Wins");
     }
 
     public void processEvents()

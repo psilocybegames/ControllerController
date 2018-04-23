@@ -39,6 +39,8 @@ public class AsteroidEvent : Event {
     public override void onFireEvent()
     {
         base.onFireEvent();
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Shield_colission_asteroid);
         Messages.showMessage(UnityHelper.ColorText("Asteroids!", Color.white));
         Messages.showSubText(UnityHelper.ColorText("Shoot them with lasers!", Color.green));
         EventObjects.asteroids.Play();

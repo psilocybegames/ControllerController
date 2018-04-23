@@ -34,6 +34,8 @@ public class SunEvent : Event {
     public override void onFireEvent()
     {
         base.onFireEvent();
+        SoundManager manager = GameLoop.getSoundManager();
+        manager.PlaySingle(manager.Sun_frying);
         Messages.showMessage(UnityHelper.ColorText("Too close to the sun!", Color.white));
         Messages.showSubText(UnityHelper.ColorText("Overcharge the shields!", Color.green));
 
