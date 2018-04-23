@@ -16,7 +16,11 @@ public class LaserTurret : ShipComponent
         base.shipComponentActivated();
         GameLoop.ship.laserTurretFiring = true;
         Beam.SetActive(true);
-        Messages.showSubText(UnityHelper.ColorText("Laser turret engaged!", Color.green));
+        if(GameLoop.gl.currentEvent != null)
+        { 
+        if (GameLoop.gl.currentEvent.GetType() == typeof(AsteroidEvent))
+            Messages.showSubText(UnityHelper.ColorText("Laser turret engaged!", Color.green));
+        }
 
 
     }

@@ -23,7 +23,12 @@ public class ShieldCore : ShipComponent
         GameLoop.ship.shieldOvercharged = true;
         shield.SetActive(true);
         GetComponent<Animator>().SetBool("ShieldOn", true);
-        Messages.showSubText(UnityHelper.ColorText("Shields Overcharged!", Color.green));
+        if (GameLoop.gl.currentEvent != null)
+        {
+            if (GameLoop.gl.currentEvent.GetType() == typeof(SunEvent))
+                Messages.showSubText(UnityHelper.ColorText("Shields Overcharged!", Color.green));
+        }
+
 
     }
 
