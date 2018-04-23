@@ -39,7 +39,7 @@ public static class Config
 
 
     public static float keyRemovalTime = 0.2f;
-    public static float constantPossesionChange = 0.0005f;
+    public static float constantPossesionChange = 0.01000f;
     public static float movementPossesionChange = 0.01f;
     public static int minEvents = 4;
     public static int maxEvents = 7;
@@ -59,6 +59,8 @@ public static class Config
     public static float sunDamage = 0.05f;
     public static float sunDamageTime = 1f;
     public static List<KeyCode> buttons;
+    public static float shipSpeedNormal = 2f;
+    public static float shipSpeedFast = 6f;
 
     public static void switchControlScheme(ControlScheme newScheme, bool alienInControl)
     {

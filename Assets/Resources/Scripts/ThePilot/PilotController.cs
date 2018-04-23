@@ -218,4 +218,14 @@ public class PilotController : MonoBehaviour {
         pickedItem.gameObject.transform.position = heldItemBox.getItemMovePosition();
         GameLoop.changeCursorSpriteTo(pickedItem.GetComponent<SpriteRenderer>().sprite);
     }
+
+    public void switchSpriteToHuman()
+    {
+        
+    }
+
+    public void switchSpriteToAlien()
+    {
+        
+    }
 }

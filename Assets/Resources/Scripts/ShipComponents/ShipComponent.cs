@@ -23,9 +23,8 @@ public class ShipComponent : InteractableObject
     public override void onCursorClick(int button)
     {
 
-        if(pilot.heldItem != null)
+        if(pilot.heldItem != null && !pilot.clickedThisFrame && !activated)
         {
-            Debug.Log("aa");
         if (pilot.heldItem.type == itemNeeded)
             {
             shipComponentActivated();

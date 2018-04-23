@@ -10,8 +10,9 @@ public class SpaceShip : MonoBehaviour {
     public bool helmEngaged = false;
     public bool laserTurretFiring = false;
     public bool spaceShipFlying = true;
-	
-	void Start ()
+    public float shipSpeed = 2f;
+
+    void Start ()
 
     {
 		

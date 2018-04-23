@@ -277,7 +277,24 @@ public class GameLoop : MonoBehaviour {
 
     public void switchPossesion()
     {
+        possesionMeter = 0f;
         
+        if (p.controlledByAlien)
+        {
+            p.controlledByAlien = false;
+            p.controlledByPilot = true;
+            Config.switchControlScheme(Config.controlScheme, false);
+            p.switchSpriteToHuman();
+        }
+        else
+        {
+            p.controlledByAlien = true;
+            p.controlledByPilot = false;
+            p.switchSpriteToAlien();
+            Config.switchControlScheme(Config.controlScheme, true);
+
+        }
+
     }
 
     public static void changePossesionBar(float d)
