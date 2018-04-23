@@ -17,9 +17,9 @@ TagManager:
   - ShipRoom
   - Players
   - Objects
-  - 
-  - 
-  - 
+  - Items
+  - CursorCollider
+  - Cursor
   - 
   - 
   - 
