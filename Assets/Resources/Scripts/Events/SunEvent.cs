@@ -34,6 +34,7 @@ public class SunEvent : Event {
     public override void onFireEvent()
     {
         base.onFireEvent();
+        Messages.showMessage("The sun!");
         EventObjects.sun.Play();
     }
 }

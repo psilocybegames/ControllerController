@@ -33,6 +33,7 @@ public class AsteroidEvent : Event {
     public override void onFireEvent()
     {
         base.onFireEvent();
+        Messages.showMessage("Asteroids!");
         EventObjects.asteroids.Play();
     }
 }

@@ -31,6 +31,7 @@ public class MinesEvent : Event {
 
     public override void onFireEvent()
     {
+        Messages.showMessage("Asteroids!");
         base.onFireEvent();
         EventObjects.mines.Play();
     }

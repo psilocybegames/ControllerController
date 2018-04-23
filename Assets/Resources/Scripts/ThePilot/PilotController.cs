@@ -44,7 +44,7 @@ public class PilotController : MonoBehaviour {
 	
     public int checkForClick()
     {
-        if (Input.GetKeyDown(Config.pickUpUseItemKey))
+        if (Input.GetKeyDown(Config.pickUpUseItemKey) || Input.GetKeyDown(Config.pickUpUseItemKeyboadKey))
         {
             return 1;
         }
@@ -137,7 +137,7 @@ public class PilotController : MonoBehaviour {
     {
    
 
-        if (Input.GetKeyDown(Config.dropItemKey))
+        if (Input.GetKeyDown(Config.dropItemKey) || Input.GetKeyDown(Config.dropItemKeyboardKey))
             dropHeldItem();
 
 
@@ -183,6 +183,7 @@ public class PilotController : MonoBehaviour {
         if(heldItem != null)
         {
             heldItem.gameObject.transform.position = gameObject.transform.position;
+            heldItem.GetComponent<Rigidbody2D>().velocity = new Vector2(UnityEngine.Random.Range(-2f, 2f), 2f);
             heldItem = null;
             GameLoop.changeCursorToDefault();
         }

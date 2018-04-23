@@ -61,16 +61,22 @@ public static class Config
     public static List<KeyCode> buttons;
     public static float shipSpeedNormal = 2f;
     public static float shipSpeedFast = 6f;
+    public static KeyCode pickUpUseItemKeyboadKey;
+    public static KeyCode dropItemKeyboardKey;
+    public static float disappearMessageTime = 5f;
 
     public static void switchControlScheme(ControlScheme newScheme, bool alienInControl)
     {
         buttons = new List<KeyCode>();
         List<KeyCode> currentControls = new List<KeyCode>();
         controlScheme = newScheme;
-
         if(alienInControl)
-        { 
-        switch (newScheme)
+        {
+
+            pickUpUseItemKeyboadKey = KeyCode.Return;
+            dropItemKeyboardKey = KeyCode.Keypad0;
+
+            switch (newScheme)
         {
             case ControlScheme.XboxController:
 
@@ -102,6 +108,9 @@ public static class Config
         }
         else
         {
+
+            pickUpUseItemKeyboadKey = KeyCode.Space;
+            dropItemKeyboardKey = KeyCode.Tab;
             switch (newScheme)
             {
                 case ControlScheme.XboxController:

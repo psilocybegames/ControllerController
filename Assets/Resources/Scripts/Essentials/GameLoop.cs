@@ -34,7 +34,15 @@ public class GameLoop : MonoBehaviour {
     public static List<Sprite> mineSprites;
     public static List<Sprite> pirateShipSprites;
 
+    public static void repairShip()
+    {
+        
+    }
 
+    public static void damageShipByArcWelder()
+    {
+        
+    }
 
     public static SpaceShip ship;
     public List<Event> events;

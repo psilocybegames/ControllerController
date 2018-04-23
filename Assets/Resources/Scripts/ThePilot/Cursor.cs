@@ -49,16 +49,23 @@ public class Cursor : MonoBehaviour
 
     void Update()
     {
-        if(GameLoop.p.controlledByAlien)
-        { 
-        horDir = Input.GetAxis("Cursor X2");
-        verDir = Input.GetAxis("Cursor Y2");
-        }
-        else { 
-        horDir = Input.GetAxis("Cursor X1");
-        verDir = Input.GetAxis("Cursor Y1");
-        }
 
+        string axisNumber = "1";
+        if (GameLoop.p.controlledByAlien)
+            axisNumber = "2";
+            
+        if(Input.GetAxis("Cursor XKeys" + axisNumber) != 0f || Input.GetAxis("Cursor YKeys" + axisNumber) != 0f)
+        { 
+            horDir = Input.GetAxis("Cursor XKeys" + axisNumber);
+            verDir = Input.GetAxis("Cursor YKeys" + axisNumber);
+        }
+        else
+        {
+
+
+            horDir = Input.GetAxis("Cursor X" + axisNumber);
+            verDir = Input.GetAxis("Cursor Y" + axisNumber);
+        }
     }
 
     void FixedUpdate()

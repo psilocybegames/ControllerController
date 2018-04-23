@@ -6,7 +6,6 @@ using UnityEngine;
 public class ShipComponent : InteractableObject
 {
     private PilotController pilot;
-    public bool isInRangeToUseObject;
     public UsableItem.ItemType itemNeeded;
     public float activationDuration = 10f;
     public float activationCounter = 0f;
@@ -23,27 +22,44 @@ public class ShipComponent : InteractableObject
     public override void onCursorClick(int button)
     {
 
-        if(pilot.heldItem != null && !pilot.clickedThisFrame && !activated)
+        if (pilot.heldItem != null && !pilot.clickedThisFrame && !activated)
         {
-        if (pilot.heldItem.type == itemNeeded)
+            if (pilot.heldItem.type == itemNeeded)
             {
-            shipComponentActivated();
+                shipComponentActivated();
             }
             else
             {
+                if(pilot.heldItem.type == UsableItem.ItemType.ArcWelder)
+                {
+                    if (pilot.controlledByAlien)
+                    { 
+                        GameLoop.repairShip();
+                        
+                    }
+                    else
+                    {
+                        GameLoop.damageShipByArcWelder();
 
+                    }
+
+                    pilot.dropHeldItem();
+
+                }
+                    else
+                { }
                 GameLoop.wrongItemUsedOnStation();
 
             }
         }
-        
+
 
     }
 
-    
+
     public virtual void Update()
     {
-        if(activated)
+        if (activated)
         {
             processActivatedAnimation();
 
@@ -62,35 +78,19 @@ public class ShipComponent : InteractableObject
 
     public virtual void onComponentDeactivation()
     {
-        
+
     }
 
     public virtual void processActivatedAnimation()
     {
 
-        transform.localScale = Vector3.one + Vector3.one * Mathf.Sin(Time.time * 10f) * 0.1f;
-        
+        transform.localScale = Vector3.one + Vector3.one * Mathf.Sin(Time.time * 10f) * 0.03f;
+
     }
 
-    void Start ()
+    public virtual void Start()
     {
         pilot = FindObjectOfType<PilotController>();
-        isInRangeToUseObject = false;
-	}
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.name == "PilotPickupRange")
-        {
-            isInRangeToUseObject = true;
-        }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.name == "PilotPickupRange")
-        {
-            isInRangeToUseObject = false;
-        }
-    }
 }
