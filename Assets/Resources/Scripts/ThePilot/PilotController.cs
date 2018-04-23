@@ -32,9 +32,9 @@ public class PilotController : MonoBehaviour {
     public bool clickedThisFrame = false;
 
     void Start () {
-
+        a = transform.Find("Sprite").GetComponent<Animator>();
         pressedKeys = new List<KeyCode>();
-
+        a.SetBool("Possesed", false);
         r = GetComponent<Rigidbody2D>();
 
         heldItem = null;
@@ -105,49 +105,25 @@ public class PilotController : MonoBehaviour {
 
         logKeyInput();
         handleKeyInput();
-        if(Config.controlScheme == Config.ControlScheme.KeybordAndMouse)
-        {
-            KeyCode currentPlayerLeft;
-            KeyCode currentPlayerRight;
-            KeyCode currentPlayerUp;
-            KeyCode currentPlayerDown;
-
-            if (controlledByPilot)
-            {
-                currentPlayerLeft = Config.player1LeftKey;
-                currentPlayerRight = Config.player1RightKey;
-                currentPlayerUp = Config.player1UpKey;
-                currentPlayerDown = Config.player1DownKey;
-            }
-            else
-            {
-                currentPlayerLeft = Config.player2LeftKey;
-                currentPlayerRight = Config.player2RightKey;
-                currentPlayerUp = Config.player2UpKey;
-                currentPlayerDown = Config.player2DownKey;
-            }
-
-            if (pressedKeys.Contains(currentPlayerLeft) && !pressedKeys.Contains(currentPlayerRight))
-                horDir = keyboardAxisBaseValue * -1;
-            if (pressedKeys.Contains(currentPlayerRight) && !pressedKeys.Contains(currentPlayerLeft))
-                horDir = keyboardAxisBaseValue;
-
-            if (pressedKeys.Contains(currentPlayerDown) && !pressedKeys.Contains(currentPlayerUp))
-                verDir = keyboardAxisBaseValue * -1;
-            if (pressedKeys.Contains(currentPlayerUp) && !pressedKeys.Contains(currentPlayerDown))
-                verDir = keyboardAxisBaseValue;
-        }
-        else
-        {
+        
             if (controlledByPilot)
                 axisNumber = "1";
             else
                 axisNumber = "2";
 
-            horDir = Input.GetAxis("Horizontal" + axisNumber);
-            verDir = Input.GetAxis("Vertical" + axisNumber); ;
-            
+
+       if(Input.GetAxis("HorizontalKeys"+ axisNumber) != 0f || Input.GetAxis("VerticalKeys" + axisNumber) != 0f)
+           {
+            horDir = Input.GetAxis("HorizontalKeys" + axisNumber);
+            verDir = Input.GetAxis("VerticalKeys" + axisNumber);
+           }
+        else
+            { 
+
+        horDir = Input.GetAxis("Horizontal" + axisNumber);
+        verDir = Input.GetAxis("Vertical" + axisNumber);
         }
+
 
         if (!IsOnLadder)
         {
@@ -194,7 +170,11 @@ public class PilotController : MonoBehaviour {
     public void FixedUpdate()
     {
         r.velocity = new Vector3(moveSpeed * horDir,moveSpeed * verDir,0f);
-
+        a.SetFloat("Speed", Mathf.Abs(horDir));
+        if (horDir < 0)
+            a.GetComponent<SpriteRenderer>().flipX = true;
+        if(horDir > 0)
+            a.GetComponent<SpriteRenderer>().flipX = false;
 
     }
 

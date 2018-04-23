@@ -281,6 +281,8 @@ public class GameLoop : MonoBehaviour {
         
         if (p.controlledByAlien)
         {
+            p.a.SetBool("Possesed", false);
+
             p.controlledByAlien = false;
             p.controlledByPilot = true;
             Config.switchControlScheme(Config.controlScheme, false);
@@ -288,6 +290,7 @@ public class GameLoop : MonoBehaviour {
         }
         else
         {
+            p.a.SetBool("Possesed", true);
             p.controlledByAlien = true;
             p.controlledByPilot = false;
             p.switchSpriteToAlien();
