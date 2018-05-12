@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLoop : MonoBehaviour {
 
@@ -10,13 +11,18 @@ public class GameLoop : MonoBehaviour {
     public static float shipHealth = 10f;
 
     private static SoundManager soundManagerInstance = null;
-    
+
+    public Text humanAlienIndicator;
+    public Text humanAlienIndicatorSubtext;
+
     public static float maxShipHealth = 10f;
     public static float travelTime = Config.travelTime;
     public static float currentTravelTime = 0f;
     public static SpriteRenderer cursor;
     public static GameLoop gl;
     public static float timeElapsed = 0f;
+    public float tTime = 0f;
+    public float maxTTime = 0f;
     public static float possesionMeter = 0f;
     public static float maxPossesion = 10f;
     public static float shipSpeed = 1f;
@@ -226,7 +232,8 @@ public class GameLoop : MonoBehaviour {
         healthBar.percentFilled = shipHealth / maxShipHealth;
         possesionBar.percentFilled = possesionMeter / maxPossesion;
         possesionMeter += Config.constantPossesionChange;
-
+        tTime = currentTravelTime;
+        maxTTime = travelTime;
         if(possesionMeter > maxPossesion)
         {
             switchPossesion();
@@ -242,11 +249,13 @@ public class GameLoop : MonoBehaviour {
 
         if(shipHealth <= 0f)
             humanWins();
+        else
+        { 
+            if (currentTravelTime >= travelTime)
+                alienWins();
+        }
 
-        if (currentTravelTime >= travelTime)
-            alienWins();
-        
-	}
+    }
 
     public static void changeCursorToDefault()
     {
@@ -266,6 +275,7 @@ public class GameLoop : MonoBehaviour {
     public void alienWins()
     {
         Messages.showMessage("Alien Wins");
+
     }
 
     public void humanWins()
@@ -321,6 +331,9 @@ public class GameLoop : MonoBehaviour {
             Config.switchControlScheme(Config.controlScheme, false);
             p.switchSpriteToHuman();
             soundManagerInstance.PlaySingle(soundManagerInstance.Human_control_back);
+
+            humanAlienIndicator.text = "Pilot";
+            humanAlienIndicatorSubtext.text = "Destroy the ship, end alien menace!";
         }
         else
         {
@@ -331,7 +344,8 @@ public class GameLoop : MonoBehaviour {
             p.switchSpriteToAlien();
             Config.switchControlScheme(Config.controlScheme, true);
             soundManagerInstance.PlaySingle(soundManagerInstance.Alien_control);
-
+            humanAlienIndicator.text = "Alien";
+            humanAlienIndicatorSubtext.text = "Save the ship, visit Earth!";
         }
 
     }
